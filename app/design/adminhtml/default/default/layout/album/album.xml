@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_catalog_product_album>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>album_tab</name>
+                <block>album/adminhtml_catalog_product_album_tab</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_album>
+</layout>
