@@ -35,7 +35,7 @@
         <catalog>
             <product>
                 <type>
-                    <album translate="label" module="subscription">
+                    <album translate="label" module="album">
                         <label>Album</label>
                         <model>album/product_album_type</model>
                         <price_model>album/product_album_price</price_model>
