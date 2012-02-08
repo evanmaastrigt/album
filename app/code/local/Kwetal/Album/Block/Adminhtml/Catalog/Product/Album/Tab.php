@@ -1,6 +1,6 @@
 <?php
 class Kwetal_Album_Block_Adminhtml_Catalog_Product_Album_Tab
-    extends Mage_Adminhtml_Block_Template
+    extends Mage_Adminhtml_Block_Widget_Form
     implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     public function _construct()
@@ -29,8 +29,38 @@ class Kwetal_Album_Block_Adminhtml_Catalog_Product_Album_Tab
         return false;
     }
     
-    protected function _toHtml()
+    protected function _prepareForm()
     {
+        $form = new Varien_Data_Form();
+        $this->setForm($form);
+    
+        $fieldset = $form->addFieldset('album_album', array(
+                'legend'=>Mage::helper('album')->__('Album Information')
+        ));
+        
+        $dateFormatIso = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
+        $fieldset->addField('release_date', 'date', array(
+                    'name'   => 'from_date',
+                    'label'  => Mage::helper('album')->__('From Date'),
+                    'title'  => Mage::helper('album')->__('From Date'),
+                    'image'  => $this->getSkinUrl('images/grid-cal.gif'),
+                    'input_format' => Varien_Date::DATE_INTERNAL_FORMAT,
+                    'format'       => $dateFormatIso
+        ));
+    }
+    
+    protected function _toHtml()
+    {    
+        $accordion = $this->getLayout()->createBlock('adminhtml/widget_accordion')
+                                       ->setId('album_info');
+        
+        $accordion->addItem('options', array(
+                    'title'   => Mage::helper('album')->__('Songs'),
+                    'content' => $this->getLayout()->createBlock('album/adminhtml_catalog_product_album_tab_song')->toHtml(),
+                    'open'    => true,
+        ));
+        
+        $this->setChild('accordion', $accordion);
         return parent::_toHtml();
     }
  

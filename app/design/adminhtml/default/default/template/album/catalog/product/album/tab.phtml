@@ -2,5 +2,6 @@
     <?php echo $this->getMessageHtml() ?>
 </div>
 <div class="entry-edit">
-    
+    <?php echo $this->getForm()->toHtml(); ?>
+    <?php echo $this->getChildHtml('accordion') ?>
 </div>

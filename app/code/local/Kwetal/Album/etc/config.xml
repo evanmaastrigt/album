@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Kwetal_Album>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Kwetal_Album>
     </modules>
     <global>
@@ -14,7 +14,19 @@
         <models>
             <album>
                 <class>Kwetal_Album_Model</class>
+                <resourceModel>album_resource</resourceModel>
             </album>
+            <album_resource>
+            	<class>Kwetal_Album_Model_Resource</class>
+            	<entities>
+            		<album>
+            			<table>album_product</table>
+            		</album>
+            		<song>
+            			<table>album_song</table>
+            		</song>
+            	</entities>
+            </album_resource>
         </models>
         <helpers>
             <album>
@@ -43,7 +55,7 @@
                     </album>
                 </type>
             </product>
-        </catalog>        
+        </catalog> 
     </global>
     <adminhtml>
         <layout>
